@@ -7,6 +7,7 @@ import { SortBy } from "../../models/productHeader.model";
 })
 export class ProductsHeaderComponent implements OnInit {
   @Output() coloumsCountChange = new EventEmitter<number>();
+  @Output() sortBy = new EventEmitter<string>();
   sorts: SortBy[] = [
     { value: "desc", label: "desc" },
     { value: "asc", label: "asc" },
@@ -24,6 +25,7 @@ export class ProductsHeaderComponent implements OnInit {
 
   handleUpdateSort(sort: SortBy) {
     this.sort = sort.value;
+    this.sortBy.emit(sort.label);
   }
   handleUpdateNumberItems(item: any) {
     this.numberItems = item.value;
